@@ -89,6 +89,10 @@ a
     font-family: $arina
     font-size: 90px
     line-height: 100%
+    &_wide
+        max-width: 688px
+    &_bright
+        color: $bright-color
     // @include md
     //     font-size: 75px
     //     line-height: 110%
@@ -103,6 +107,14 @@ a
     font-family: $arsenal
     font-size: 18px
     line-height: 160%
+    &_wide
+        max-width: 380px
+    &_mb
+        &:not(:last-child)
+            margin-bottom: 25px
+    &_dark
+        color: $dark-color
+
     // @include md
     //     font-size: 75px
     //     line-height: 110%
@@ -113,9 +125,14 @@ a
     @include xxs
         font-size: 17px
 
+.mb-120
+    margin-bottom: 120px
 
+.pb-200
+    padding-bottom: 200px
 
-
+.pt-200
+    padding-top: 200px
 
 
 
