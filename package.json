@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm i"
   },
-  "author": "",
+  "author": "alena",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.27.11",

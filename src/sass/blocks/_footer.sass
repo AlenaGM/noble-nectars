@@ -10,20 +10,20 @@
       align-items: flex-start
     @include xxs
       flex-direction: column-reverse
+  &__logo
+    flex: 0 0 146px
+    margin-right: 60px
+    @include xs
+      flex: 0 1 auto
+      width: 146px
+      margin-right: 0
+      margin-bottom: 70px
+    @include xxs
+      width: 100px
+      margin-bottom: 0
   &__title
     @include xxs
       margin-bottom: 50px
-  &__logo
-    margin-right: 60px
-    flex: 0 0 146px
-    @include xs
-      margin-right: 0
-      margin-bottom: 70px
-      flex: 0 1 auto
-      width: 146px
-    @include xxs
-      margin-bottom: 0
-      width: 100px
   &__bottom
     display: grid
     grid-template-columns: repeat(2, 300px)
@@ -41,20 +41,24 @@
     align-items: flex-start
   &__address
     margin-bottom: 10px
+  &__city
+    margin-bottom: 10px
   &__time
     margin-bottom: 60px
+    @include xs
+      margin-bottom: 40px
   &__tel
     position: relative
     margin-bottom: 10px
     &::after
       content: ''
+      background: $main-color
       position: absolute
       bottom: -2px
       left: 50%
       height: 1px
       width: 0
       transform: translateX(-50%)
-      background: $main-color
       transition: width 0.3s ease
     &:hover
       &::after
@@ -65,13 +69,13 @@
     margin-bottom: 10px
     &::after
       content: ''
+      background: $main-color
       position: absolute
       bottom: -2px
       left: 50%
       height: 1px
       width: 0
       transform: translateX(-50%)
-      background: $main-color
       transition: width 0.3s ease
     &:hover
       &::after

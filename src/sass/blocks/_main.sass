@@ -10,20 +10,22 @@
   @include sm
     margin-top: -68px
   @include xxs
-    margin-top: -28px
+    margin-top: -40px
+  @include mini
+    margin-top: -34px
   &__wrap
     display: flex
     align-items: stretch
     justify-content: flex-end
     @include sm
-      margin-left: auto
-      max-width: 444px
       flex-direction: column
+      max-width: 444px
+      margin-left: auto
     @include xxs
       max-width: 100%
   &__info
-    margin-right: 30px
     flex: 0 0 380px
+    margin-right: 30px
     @include sm
       margin-bottom: 100px
       margin-right: 0
@@ -31,16 +33,16 @@
       margin-bottom: 70px
   &__img
     flex: 0 1 482px
+    @include sm
+      flex: 0 1 auto
+      height: 576px
+    @include xxs
+      height: 360px
     img
       height: 100%
       object-fit: cover
-    @include sm
-      height: 576px
-      flex: 0 1 auto
-        img
-          width: 100%
-    @include xxs
-      height: 360px
+      @include sm
+        width: 100%
 
 .features
   &__wrap
@@ -52,42 +54,72 @@
       gap: 104px
     @include sm
       grid-template-columns: 1fr
+      gap: 100px
       padding-left: 70px
       padding-right: 70px
-      gap: 100px
+    @include xxs
+      padding-left: 90px
+      padding-right: 90px
+      gap: 70px
+    @include mini
+      padding-left: 40px
+      padding-right: 40px
   &__item
     @include sm
       width: 400px
-    @include xxs
+    @include xs
       width: 278px
+    @include xxs
+      display: flex
+      flex-direction: column-reverse
+      width: 100%
+      align-items: center
+    @include mini
+      width: 210px
+      margin-left: auto
+      margin-right: auto
     &_reverse
       padding-top: 60px
       @include sm
         margin-left: auto
         padding-top: 0
+      @include xxs
+        flex-direction: column
+  &__img
+    @include xxs
+      width: 100%
+    img
+      width: 100%
+      min-height: 418px
+      object-fit: cover
+      @include xxs
+        min-height: 318px
   &__name
     position: relative
+    max-width: 278px
+    margin-left: -100px
+    margin-top: -40px
     font-family: $arina
     font-size: 70px
     line-height: 100%
-    max-width: 278px
     text-align: center
-    margin-left: -100px
-    margin-top: -40px
     @include sm
       margin-left: -70px
+    @include xxs
+      margin-left: 0
+      margin-top: 0
+      margin-bottom: -23px
+      font-size: 44px
+    @include mini
+      margin-bottom: -16px
+      font-size: 32px
     &_bottom
       margin-top: 0
       margin-bottom: -37px
-  &__img
-    img
-      width: 100%
-      object-fit: cover
-      min-height: 418px
-    @include xxs
-      width: 100%
-      img
-        min-height: 318px
+      @include xxs
+        margin-bottom: -23px
+      @include mini
+        margin-bottom: -16px
 
 .tradition
   background: $main-color
@@ -105,10 +137,10 @@
       flex-direction: column
   &__left
     position: relative
-    margin-right: 132px
-    padding-left: calc((100% - 1200px) / 2)
     display: flex
     flex-direction: column
+    margin-right: 132px
+    padding-left: calc((100% - 1200px) / 2)
     @include md
       padding-left: 20px
       margin-right: 70px
@@ -124,21 +156,16 @@
     @include md
       width: 628px
     @include sm
+      width: 100%
       margin-bottom: 100px
     @include xxs
       margin-bottom: 70px
   &__info
-    @include xs
-      max-width: 100%
-  &__right
-    @media(min-width: 1920px)
-      margin-right: calc((100% - 1900px) / 2)
-    img
-      min-height: 500px
-      object-fit: cover
     @include sm
-      margin-left: auto
-      width: 464px
+      margin-bottom: 100px
+    @include xxs
+      max-width: 100%
+      margin-bottom: 70px
   &__text
     margin-left: auto
   &__bottom
@@ -159,51 +186,65 @@
       width: 100%
       heght: 100%
       object-fit: cover
+  &__right
+    @media(min-width: 1920px)
+      margin-right: calc((100% - 1900px) / 2)
+    @include sm
+      width: 464px
+      margin-left: auto
+    @include xxs
+      width: calc(100% - 30px)
+      margin-right: auto
+    img
+      min-height: 500px
+      object-fit: cover
+      @include sm
+        width: 100%
 
 .country
+  padding-top: 510px
   @media(min-width: 1920px)
     padding-top: 610px
-  padding-top: 510px
   @include sm
     padding-top: 200px
-  &__title
-    position: relative
   &__wrap
     display: flex
     @include sm
       flex-direction: column
   &__left
-    margin-right: 30px
     display: flex
     flex-direction: column
     flex: 0 0 688px
+    margin-right: 30px
     @include md
       flex: 0 0 628px
     @include sm
+      flex: 0 1 auto
       margin-right: 0
       margin-bottom: 100px
-      flex: 0 1 auto
     @include xxs
       margin-bottom: 70px
+  &__title
+    position: relative
   &__img
+    width: 55%
     margin-top: -200px
     margin-left: auto
-    width: 55%
+    @include sm
+      width: 74%
+      margin-top: -19%
+      margin-right: auto
+    @include xxs
+      width: 100%
     img
       width: 100%
       min-height: 480px
       object-fit: cover
-    @include sm
-      margin-top: -19%
-      margin-right: auto
-      width: 74%
-    @include xxs
-      width: 100%
-        img
-          min-height: 300px
+      @include xxs
+        min-height: 300px
   &__right
-    padding-top: 360px
     align-self: flex-end
+    padding-top: 360px
     @include sm
       padding-top: 0
 
