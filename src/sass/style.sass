@@ -91,15 +91,12 @@ a
     line-height: 100%
     &_wide
         max-width: 688px
+        @include sm
+            max-width: 100%
     &_bright
         color: $bright-color
-    // @include md
-    //     font-size: 75px
-    //     line-height: 110%
     @include sm
         font-size: 80px
-    // @include xs
-    //     font-size: 45px
     @include xxs
         font-size: 38px
 
@@ -107,32 +104,36 @@ a
     font-family: $arsenal
     font-size: 18px
     line-height: 160%
+    @include xxs
+        font-size: 17px
     &_wide
         max-width: 380px
+        @include sm
+            max-width: 444px
+        @include xxs
+            max-width: 100%
     &_mb
         &:not(:last-child)
             margin-bottom: 25px
     &_dark
         color: $dark-color
 
-    // @include md
-    //     font-size: 75px
-    //     line-height: 110%
-    // @include sm
-    //     font-size: 60px
-    // @include xs
-    //     font-size: 45px
-    @include xxs
-        font-size: 17px
-
 .mb-120
     margin-bottom: 120px
+    @include sm
+        margin-bottom: 100px
+    @include xxs
+        margin-bottom: 70px
 
 .pb-200
     padding-bottom: 200px
+    @include xxs
+        padding-bottom: 140px
 
 .pt-200
     padding-top: 200px
+    @include xxs
+        padding-top: 140px
 
 .footer-text
     font-size: 18px
