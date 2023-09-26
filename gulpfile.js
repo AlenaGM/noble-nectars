@@ -12,8 +12,7 @@ const ttf2woff = require("gulp-ttf2woff");
 const ttf2woff2 = require("gulp-ttf2woff2");
 const webp = require("gulp-webp");
 const ghPages = require("gulp-gh-pages");
-
-//const { src, task } = require("gulp");
+const { src, task } = require("gulp");
 
 const server = function () {
   browserSync({
