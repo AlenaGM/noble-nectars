@@ -1,91 +1,91 @@
 /* eslint-disable no-undef */
-const gulp = require("gulp");
-const browserSync = require("browser-sync");
-const concat = require("gulp-concat");
-const uglify = require("gulp-uglify-es").default;
-const sass = require("gulp-sass")(require("sass"));
-const cleanCSS = require("gulp-clean-css");
+const { src, dest, parallel, series, watch } = require("gulp");
+
 const autoprefixer = require("gulp-autoprefixer");
-const rename = require("gulp-rename");
+const cleanCSS = require("gulp-clean-css");
+const concat = require("gulp-concat");
+const gcssmq = require("gulp-group-css-media-queries");
 const imagemin = require("gulp-imagemin");
+const sass = require("gulp-sass")(require("sass"));
+const rename = require("gulp-rename");
 const ttf2woff = require("gulp-ttf2woff");
 const ttf2woff2 = require("gulp-ttf2woff2");
+const uglify = require("gulp-uglify-es").default;
 const webp = require("gulp-webp");
-// const avif = require('gulp-avif');
+const browserSync = require("browser-sync").create();
 
 const server = function () {
-  browserSync({
+  browserSync.init({
     server: {
       baseDir: "dist",
+      serveStaticOptions: {
+        extensions: ["html"],
+      },
     },
+    port: 8080,
+    ui: { port: 8081 },
+    open: true,
   });
-  gulp.watch("src/*.html").on("change", browserSync.reload);
+  watch("src/*.html").on("change", browserSync.reload);
 };
 
 const styles = function () {
-  return gulp
-    .src("src/sass/**/*.+(scss|sass)")
+  return src("src/sass/**/*.+(scss|sass)")
     .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
     .pipe(rename({ suffix: ".min", prefix: "" }))
     .pipe(autoprefixer())
+    .pipe(gcssmq())
     .pipe(cleanCSS())
-    .pipe(gulp.dest("dist/css"))
+    .pipe(dest("dist/css"))
     .pipe(browserSync.stream());
 };
 
 const html = function () {
-  return gulp.src("src/*.html").pipe(gulp.dest("dist/"));
+  return src("src/*.html").pipe(dest("dist/"));
 };
 
 const scripts = function () {
-  return gulp
-    .src(["node_modules/swiper/swiper-bundle.min.js", "src/js/**/*.js"])
+  return src(["node_modules/swiper/swiper-bundle.min.js", "src/js/**/*.js"])
     .pipe(concat("main.min.js"))
     .pipe(uglify())
-    .pipe(gulp.dest("dist/js"))
+    .pipe(dest("dist/js"))
     .pipe(browserSync.stream());
 };
 
 const fonts = function () {
-  return gulp
-    .src("src/fonts/*.ttf")
+  return src("src/fonts/*.ttf")
     .pipe(ttf2woff())
-    .pipe(gulp.dest("dist/fonts"))
-    .pipe(gulp.src("src/fonts/*.ttf"))
+    .pipe(dest("dist/fonts"))
+    .pipe(src("src/fonts/*.ttf"))
     .pipe(ttf2woff2())
-    .pipe(gulp.dest("dist/fonts"));
+    .pipe(dest("dist/fonts"));
 };
 
 const icons = function () {
-  return gulp
-    .src("src/icons/**/*")
-    .pipe(gulp.dest("dist/icons"))
+  return src("src/icons/**/*")
+    .pipe(dest("dist/icons"))
     .pipe(browserSync.stream());
 };
 
 const images = function () {
-  return gulp
-    .src("src/img/**/*")
+  return src("src/img/**/*")
     .pipe(imagemin())
-    .pipe(gulp.dest("dist/img"))
+    .pipe(dest("dist/img"))
     .pipe(browserSync.stream());
 };
 
 const webpImages = function () {
-  return gulp
-    .src("src/img/**/*.{png,jpg,jpeg}")
-    .pipe(webp())
-    .pipe(gulp.dest("dist/img"));
+  return src("src/img/**/*.{png,jpg,jpeg}").pipe(webp()).pipe(dest("dist/img"));
 };
 
-const watch = function () {
-  gulp.watch("src/sass/**/*.+(scss|sass|css)", gulp.parallel(styles));
-  gulp.watch("src/*.html").on("change", gulp.parallel(html));
-  gulp.watch("src/js/**/*.js").on("change", gulp.parallel(scripts));
-  gulp.watch("src/fonts/*").on("all", gulp.parallel(fonts));
-  gulp.watch("src/icons/**/*").on("all", gulp.parallel(icons));
-  gulp.watch("src/img/**/*").on("all", gulp.parallel(images));
-  gulp.watch("src/img/**/*.{png,jpg,jpeg}", gulp.parallel(webpImages));
+const watch_dev = function () {
+  watch("src/sass/**/*.+(scss|sass|css)", parallel(styles));
+  watch("src/*.html").on("change", parallel(html));
+  watch("src/js/**/*.js").on("change", parallel(scripts));
+  watch("src/fonts/*").on("all", parallel(fonts));
+  watch("src/icons/**/*").on("all", parallel(icons));
+  watch("src/img/**/*").on("all", parallel(images));
+  watch("src/img/**/*.{png,jpg,jpeg}", parallel(webpImages));
 };
 
 exports.server = server;
@@ -96,16 +96,18 @@ exports.fonts = fonts;
 exports.icons = icons;
 exports.images = images;
 exports.webpImages = webpImages;
-exports.watch = watch;
+exports.watch_dev = watch_dev;
 
-exports.default = gulp.parallel(
-  watch,
-  server,
-  images,
-  webpImages,
+exports.default = parallel(
+  html,
   styles,
   scripts,
+  images,
+  webpImages,
   fonts,
   icons,
-  html
+  server,
+  watch_dev
 );
+
+exports.build = series(html, styles, scripts, images, webpImages, fonts, icons);
