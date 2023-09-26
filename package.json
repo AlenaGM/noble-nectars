@@ -35,15 +35,17 @@
   "main": "gulpfile.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlenaGM/wine-store.git"
+    "url": "git+https://github.com/AlenaGM/noble-nectars-boutique.git"
   },
   "keywords": [
     "boutique",
     "wine-shop",
-    "GSAP"
+    "GSAP",
+    "greensock",
+    "animation"
   ],
   "bugs": {
-    "url": "https://github.com/AlenaGM/wine-store/issues"
+    "url": "https://github.com/AlenaGM/noble-nectars-boutique/issues"
   },
-  "homepage": "https://github.com/AlenaGM/wine-store#readme"
+  "homepage": "https://github.com/AlenaGM/noble-nectars-boutique#readme"
 }
