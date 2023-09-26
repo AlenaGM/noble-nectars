@@ -1,4 +1,0 @@
-[build]
-  command = "gulp build"
-  functions = "netlify/functions"
-  publish = "dist"

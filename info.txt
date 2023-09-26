@@ -1,2 +1,0 @@
-1/ npm i
-2/ gulp (if not working -> npm install -g gulp)

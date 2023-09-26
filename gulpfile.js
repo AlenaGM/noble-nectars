@@ -11,8 +11,7 @@ const imagemin = require("gulp-imagemin");
 const ttf2woff = require("gulp-ttf2woff");
 const ttf2woff2 = require("gulp-ttf2woff2");
 const webp = require("gulp-webp");
-const ghPages = require("gulp-gh-pages");
-const { src, task } = require("gulp");
+// const avif = require('gulp-avif');
 
 const server = function () {
   browserSync({
@@ -98,8 +97,6 @@ exports.icons = icons;
 exports.images = images;
 exports.webpImages = webpImages;
 exports.watch = watch;
-
-task("deploy", () => src("./dist/**/*").pipe(ghPages()));
 
 exports.default = gulp.parallel(
   watch,
