@@ -7,7 +7,7 @@
     "test": "npm i"
   },
   "author": "alena",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.27.11",
     "gulp": "^4.0.2",
@@ -30,7 +30,6 @@
     "sass": "^1.57.1"
   },
   "dependencies": {
-    "gulp-avif": "^1.0.1",
     "gulp-babel": "^8.0.0",
     "swiper": "^7.4.1"
   }

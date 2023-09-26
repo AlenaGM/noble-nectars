@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const gulp = require("gulp");
 const browserSync = require("browser-sync");
 const concat = require("gulp-concat");
@@ -10,8 +11,9 @@ const imagemin = require("gulp-imagemin");
 const ttf2woff = require("gulp-ttf2woff");
 const ttf2woff2 = require("gulp-ttf2woff2");
 const webp = require("gulp-webp");
-const deploy = require("gulp-gh-pages");
-// const avif = require('gulp-avif');
+const ghPages = require("gulp-gh-pages");
+
+//const { src, task } = require("gulp");
 
 const server = function () {
   browserSync({
@@ -98,6 +100,8 @@ exports.images = images;
 exports.webpImages = webpImages;
 exports.watch = watch;
 
+task("deploy", () => src("./dist/**/*").pipe(ghPages()));
+
 exports.default = gulp.parallel(
   watch,
   server,
@@ -109,7 +113,3 @@ exports.default = gulp.parallel(
   icons,
   html
 );
-
-gulp.task("deploy", function () {
-  return gulp.src("./dist/**/*").pipe(deploy());
-});
