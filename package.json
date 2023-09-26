@@ -9,19 +9,19 @@
   },
   "devDependencies": {
     "browser-sync": "^2.27.11",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.1.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-cli": "^2.3.0",
     "gulp-concat": "^2.6.1",
-    "gulp-imagemin": "^7.1.0",
+    "gulp-imagemin": "^4.1.0",
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-ttf2woff": "^1.1.1",
     "gulp-ttf2woff2": "^4.0.1",
     "gulp-uglify-es": "^3.0.0",
-    "gulp-verb": "^0.3.0",
-    "gulp-webp": "^4.0.1",
+    "gulp-verb": "^0.1.1",
+    "gulp-webp": "^4.0.0",
     "install": "^0.13.0",
     "node-sass": "^8.0.0",
     "npm": "^9.8.1",
@@ -30,5 +30,20 @@
   "dependencies": {
     "gulp-babel": "^8.0.0",
     "swiper": "^7.4.1"
-  }
+  },
+  "description": "Noble Nectars - a boutique wine shop with exquisite wines",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlenaGM/wine-store.git"
+  },
+  "keywords": [
+    "boutique",
+    "wine-shop",
+    "GSAP"
+  ],
+  "bugs": {
+    "url": "https://github.com/AlenaGM/wine-store/issues"
+  },
+  "homepage": "https://github.com/AlenaGM/wine-store#readme"
 }
