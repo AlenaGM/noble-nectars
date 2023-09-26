@@ -1,4 +1,7 @@
+/* eslint-disable no-unused-vars */
+
 window.addEventListener("DOMContentLoaded", () => {
+  // eslint-disable-next-line no-undef
   const swiper = new Swiper(".swiper", {
     loop: true,
     autoplay: {
