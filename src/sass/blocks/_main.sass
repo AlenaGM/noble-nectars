@@ -36,6 +36,7 @@
     @include sm
       flex: 0 1 auto
       height: 576px
+      width: 100%
     @include xxs
       height: 360px
     img
@@ -189,9 +190,14 @@
   &__right
     @media(min-width: 1920px)
       margin-right: calc((100% - 1900px) / 2)
+    img
+      min-height: 500px
+      object-fit: cover
     @include sm
       width: 464px
       margin-left: auto
+      img
+        width: 100%
     @include xxs
       width: calc(100% - 30px)
       margin-right: auto
@@ -230,18 +236,18 @@
     width: 55%
     margin-top: -200px
     margin-left: auto
-    @include sm
-      width: 74%
-      margin-top: -19%
-      margin-right: auto
-    @include xxs
-      width: 100%
     img
       width: 100%
       min-height: 480px
       object-fit: cover
       @include xxs
         min-height: 300px
+    @include sm
+      margin-top: -19%
+      margin-right: auto
+      width: 74%
+    @include xxs
+      width: 100%
   &__right
     align-self: flex-end
     padding-top: 360px
