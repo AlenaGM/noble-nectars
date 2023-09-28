@@ -45,7 +45,11 @@ const html = function () {
 };
 
 const scripts = function () {
-  return src(["node_modules/swiper/swiper-bundle.min.js", "src/js/**/*.js"])
+  return src([
+    "node_modules/gsap/dist/gsap.min.js",
+    "node_modules/gsap/dist/ScrollTrigger.min.js",
+    "src/js/**/*.js",
+  ])
     .pipe(concat("main.min.js"))
     .pipe(uglify())
     .pipe(dest("dist/js"))
