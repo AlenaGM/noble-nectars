@@ -1,5 +1,7 @@
 .footer
+  margin-top: -1px
   padding-bottom: 40px
+  background: $dark-color
   @include xxs
     padding-bottom: 66px
   &__top
@@ -13,6 +15,7 @@
   &__logo
     flex: 0 0 146px
     margin-right: 60px
+    visibility: hidden
     @include xs
       flex: 0 1 auto
       width: 146px
@@ -29,6 +32,7 @@
     grid-template-columns: repeat(2, 300px)
     gap: 110px
     justify-content: end
+    visibility: hidden
     @include sm
       gap: 70px
     @include xs

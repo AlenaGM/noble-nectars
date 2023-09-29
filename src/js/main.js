@@ -126,11 +126,16 @@ function anim() {
       "<"
     );
 
+  gsap.set(".features__title", {
+    opacity: 1,
+  });
+
   tlFeatures = gsap.timeline({
     scrollTrigger: {
       trigger: ".features__wrap",
-      start: "top 70%",
+      start: "top 85%",
       end: "top 40%",
+      scrub: true,
     },
   });
 
@@ -138,14 +143,18 @@ function anim() {
     .to(".features__title", {
       opacity: 0.1,
     })
-    .from(".features__item", {
-      opacity: 0.1,
-      yPercent: "random([20, 40, 60])",
-      stagger: {
-        from: "center",
-        each: 0.1,
+    .from(
+      ".features__item",
+      {
+        opacity: 0.1,
+        yPercent: "random([20, 30, 40])",
+        stagger: {
+          from: "center",
+          each: 0.1,
+        },
       },
-    });
+      "<"
+    );
 
   gsap.set(".tradition", {
     background: "#100F0D",
@@ -221,16 +230,21 @@ function anim() {
     },
   });
 
-  tlCountry.to(".country__title", {
-    opacity: 0.1,
-  });
-  from(
-    ".country__right",
-    {
+  tlCountry
+    .to(".country__title", {
       opacity: 0.1,
-    },
-    "<"
-  );
+    })
+    .from(
+      ".country__right",
+      {
+        opacity: 0.1,
+      },
+      "<"
+    );
+
+  gsap.set(".story", {
+    background: "#100F0D",
+  });
 
   gsap.set(".story", {
     background: "#100F0D",
@@ -239,4 +253,101 @@ function anim() {
   gsap.set(".story__title", {
     color: "#EDEAE2",
   });
+
+  const tlStory = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".story",
+      start: "top 50%",
+      end: "bottom 50%",
+      duration: 0.7,
+      toggleActions: "play reverse play reverse",
+    },
+  });
+
+  tlStory
+    .to("body", {
+      background: "#EDEAE2",
+    })
+    .to(
+      ".country__right",
+      {
+        color: "#100F0D",
+      },
+      "<"
+    )
+    .to(
+      ".story",
+      {
+        background: "#EDEAE2",
+      },
+      "<"
+    )
+    .to(
+      ".story__title",
+      {
+        color: "#BB9930",
+      },
+      "<"
+    );
+
+  const sections = gsap.utils.toArray(".slider__slide");
+
+  gsap.set(".slider__text", {
+    opacity: 0.1,
+  });
+
+  const horisontal = gsap.to(".slider__wrapper", {
+    xPercent: -100 * (sections.length - 1),
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".slider__wrapper",
+      start: "top top",
+      end: `+=${sections.length * 1000}`,
+      pin: true,
+      scrub: true,
+    },
+  });
+
+  document.querySelectorAll(".slider__text").forEach((item, index) => {
+    if (index != 0) {
+      gsap.to(item, {
+        opacity: 1,
+        scrollTrigger: {
+          trigger: item,
+          start: "left 60%",
+          end: "+=500",
+          scrub: 1,
+          containerAnimation: horisontal,
+        },
+      });
+    } else {
+      gsap.to(item, {
+        opacity: 1,
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: ".slider__wrapper",
+          start: "top top",
+          toggleActions: "play reverse play reverse",
+        },
+      });
+    }
+  });
+
+  const tlFooter = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".footer",
+      start: "90% bottom",
+    },
+  });
+
+  tlFooter
+    .from(".footer__bottom", {
+      autoAlpha: 0,
+    })
+    .from(".footer__logo", {
+      autoAlpha: 0,
+      scale: 0.6,
+      duraton: 1,
+      ease: "bounce.out",
+    });
 }
