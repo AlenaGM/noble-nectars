@@ -146,4 +146,97 @@ function anim() {
         each: 0.1,
       },
     });
+
+  gsap.set(".tradition", {
+    background: "#100F0D",
+  });
+
+  gsap.set(".tradition__title", {
+    color: "#EDEAE2",
+  });
+
+  const tlBg = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".tradition",
+      start: "top 50%",
+      end: "bottom 50%",
+      duration: 0.7,
+      toggleActions: "play reverse play reverse",
+    },
+  });
+
+  tlBg
+    .to("body", {
+      background: "#EDEAE2",
+    })
+    .to(
+      ".features__name",
+      {
+        color: "#BB9930",
+      },
+      "<"
+    )
+    .to(
+      ".tradition",
+      {
+        background: "#EDEAE2",
+      },
+      "<"
+    )
+    .to(
+      ".tradition__title",
+      {
+        color: "#BB9930",
+      },
+      "<"
+    );
+
+  gsap.set(".parallax img", {
+    scale: 1.3,
+    yPercent: 15,
+  });
+
+  const parallaxBlocks = document.querySelectorAll(".parallax");
+
+  parallaxBlocks.forEach((block) => {
+    const img = block.querySelector("img");
+
+    gsap.to(img, {
+      yPercent: -15,
+      scrollTrigger: {
+        trigger: block,
+        start: "top 80%",
+        end: "bottom 20%",
+        scrub: 1,
+      },
+    });
+  });
+
+  const tlCountry = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".country__right",
+      start: "top 40%",
+      end: "top 5%",
+      scrub: true,
+    },
+  });
+
+  tlCountry.to(".country__title", {
+    opacity: 0.1,
+  });
+  from(
+    ".country__right",
+    {
+      opacity: 0.1,
+    },
+    "<"
+  );
+
+  gsap.set(".story", {
+    background: "#100F0D",
+  });
+
+  gsap.set(".story__title", {
+    color: "#EDEAE2",
+  });
 }
