@@ -1,6 +1,28 @@
 /* eslint-disable no-undef */
 window.addEventListener("DOMContentLoaded", () => {
   anim();
+
+  // eslint-disable-next-line no-undef
+  //const swiper = new Swiper(".swiper", {
+  //  loop: true,
+  //  autoplay: {
+  //    delay: 2000,
+  //    disableOnInteraction: false,
+  //  },
+  //  breakpoints: {
+  //    320: {
+  //      slidesPerView: 1.1,
+  //      spaceBetween: 20,
+  //      centeredSlides: false,
+  //    },
+  //    450: {
+  //      slidesPerView: 1.4,
+  //      spaceBetween: 30,
+  //      centeredSlides: true,
+  //      initialSlide: 1,
+  //    },
+  //  },
+  //});
 });
 
 function anim() {
@@ -109,7 +131,7 @@ function anim() {
 
     const tlPromo = gsap.timeline({
       scrollTrigger: {
-        trigger: ".promo__wrap",
+        trigger: ".promo__wrapper",
         start: "top top",
         end: "bottom+=100%",
         scrub: true,
@@ -135,7 +157,7 @@ function anim() {
 
     tlFeatures = gsap.timeline({
       scrollTrigger: {
-        trigger: ".features__wrap",
+        trigger: ".features__wrapper",
         start: "top 85%",
         end: "top 40%",
         scrub: true,
@@ -293,49 +315,6 @@ function anim() {
         "<"
       );
 
-    const sections = gsap.utils.toArray(".slider__slide");
-
-    gsap.set(".slider__text", {
-      opacity: 0.1,
-    });
-
-    const horisontal = gsap.to(".slider__wrapper", {
-      xPercent: -100 * (sections.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".slider__wrapper",
-        start: "top top",
-        end: `+=${sections.length * 1000}`,
-        pin: true,
-        scrub: true,
-      },
-    });
-
-    document.querySelectorAll(".slider__text").forEach((item, index) => {
-      if (index != 0) {
-        gsap.to(item, {
-          opacity: 1,
-          scrollTrigger: {
-            trigger: item,
-            start: "left 60%",
-            end: "+=500",
-            scrub: 1,
-            containerAnimation: horisontal,
-          },
-        });
-      } else {
-        gsap.to(item, {
-          opacity: 1,
-          duration: 0.5,
-          scrollTrigger: {
-            trigger: ".slider__wrapper",
-            start: "top top",
-            toggleActions: "play reverse play reverse",
-          },
-        });
-      }
-    });
-
     const tlFooter = gsap.timeline({
       scrollTrigger: {
         trigger: ".footer",
@@ -350,7 +329,6 @@ function anim() {
       .from(".footer__logo", {
         autoAlpha: 0,
         scale: 0.6,
-        duraton: 1,
         ease: "bounce.out",
       });
   });
@@ -624,7 +602,6 @@ function anim() {
       .from(".footer__logo", {
         autoAlpha: 0,
         scale: 0.6,
-        duraton: 1,
         ease: "bounce.out",
       });
   });

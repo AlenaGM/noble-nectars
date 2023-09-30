@@ -1,3 +1,4 @@
+@import '../../node_modules/swiper/swiper-bundle'
 @import 'libs/normalize'
 @import 'base/fonts'
 @import 'base/variables'
@@ -11,16 +12,16 @@
 body
     display: flex
     flex-direction: column
+    background: $dark-color
+    font-family: $arsenal, sans-serif
+    color: $main-color
+    font-size: 18px
     width: 100%
-    min-width: 350px
     height: 100%
+    min-width: 350px //me added
     min-height: 100vh
     margin: 0
     padding: 0
-    color: $main-color
-    background: $dark-color
-    font-family: $arsenal
-    font-size: 18px
     -webkit-font-smoothing: antialiased
     -moz-osx-font-smoothing: grayscale
     @include xxs
@@ -74,7 +75,7 @@ a
     max-width: 1240px
     margin: 0 auto
     padding: 0 20px
-    @media(max-width: 576px)
+    @include xxs
         padding: 0 15px
 
 .section-title

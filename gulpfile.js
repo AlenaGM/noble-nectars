@@ -4,7 +4,6 @@ const { src, dest, parallel, series, watch } = require("gulp");
 const autoprefixer = require("gulp-autoprefixer");
 const cleanCSS = require("gulp-clean-css");
 const concat = require("gulp-concat");
-const gcssmq = require("gulp-group-css-media-queries");
 const imagemin = require("gulp-imagemin");
 const sass = require("gulp-sass")(require("sass"));
 const rename = require("gulp-rename");
@@ -34,7 +33,6 @@ const styles = function () {
     .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
     .pipe(rename({ suffix: ".min", prefix: "" }))
     .pipe(autoprefixer())
-    .pipe(gcssmq())
     .pipe(cleanCSS())
     .pipe(dest("dist/css"))
     .pipe(browserSync.stream());
@@ -48,6 +46,7 @@ const scripts = function () {
   return src([
     "node_modules/gsap/dist/gsap.min.js",
     "node_modules/gsap/dist/ScrollTrigger.min.js",
+    "node_modules/swiper/swiper-bundle.min.js",
     "src/js/**/*.js",
   ])
     .pipe(concat("main.min.js"))
