@@ -83,10 +83,6 @@ function anim() {
         "-=0.7"
       );
 
-    gsap.set(".promo__title", {
-      opacity: 1,
-    });
-
     gsap.to(".preview__bg", {
       yPercent: -10,
       scrollTrigger: {
@@ -95,6 +91,10 @@ function anim() {
         end: "bottom top",
         scrub: 1,
       },
+    });
+
+    gsap.set(".promo__title", {
+      opacity: 1,
     });
 
     // Promo section animation
@@ -152,7 +152,7 @@ function anim() {
         "<"
       );
 
-    // Features, country and tradition titles animation
+    // Features, country, tradition and story titles fade-away
     const opacityTitles = document.querySelectorAll(".opacity-title");
 
     opacityTitles.forEach((item) => {
@@ -164,7 +164,7 @@ function anim() {
         opacity: 0.1,
         scrollTrigger: {
           trigger: item,
-          start: "top 85%", //
+          start: "top 15%",
           end: "bottom 10%",
           scrub: true,
           markers: true,
@@ -173,7 +173,6 @@ function anim() {
     });
 
     // Features section animation
-
     tlFeatures = gsap.timeline({
       scrollTrigger: {
         trigger: ".features__wrapper",
@@ -265,8 +264,8 @@ function anim() {
     const tlCountry = gsap.timeline({
       scrollTrigger: {
         trigger: ".country__right",
-        start: "top 40%",
-        end: "top 5%",
+        start: "bottom 80%",
+        end: "bottom 10%",
         scrub: true,
       },
     });
@@ -429,28 +428,21 @@ function anim() {
       );
 
     // Features and country titles animation
-    gsap.set(".features__title", {
-      opacity: 1,
-    });
-
-    gsap.set(".country__title", {
-      opacity: 1,
-    });
-
-    gsap.set(".tradition__title", {
-      opacity: 1,
-    });
-
     const opacityTitles = document.querySelectorAll(".opacity-title");
 
     opacityTitles.forEach((item) => {
+      gsap.set(item, {
+        opacity: 1,
+      });
+
       gsap.to(item, {
         opacity: 0.1,
         scrollTrigger: {
           trigger: item,
-          start: "top 80%", //
+          start: "top 40%%",
           end: "bottom 10%",
           scrub: true,
+          markers: true,
         },
       });
     });
@@ -542,6 +534,9 @@ function anim() {
         start: "top 40%",
         end: "top 5%",
         scrub: true,
+      },
+      onComplete: () => {
+        ScrollTrigger.refresh();
       },
     });
 
