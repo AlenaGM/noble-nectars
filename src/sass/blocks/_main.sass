@@ -81,15 +81,12 @@
     @include sm
       grid-template-columns: 1fr
       gap: 100px
-      padding-left: 70px
-      padding-right: 70px
+      padding: 0 70px
     @include xxs
-      padding-left: 90px
-      padding-right: 90px
       gap: 70px
+      padding: 0 90px
     @include mini
-      padding-left: 40px
-      padding-right: 40px
+      padding: 0 40px
   &__item
     @include sm
       width: 400px
@@ -98,12 +95,11 @@
     @include xxs
       display: flex
       flex-direction: column-reverse
-      width: 100%
       align-items: center
+      width: 100%
     @include mini
       width: 210px
-      margin-left: auto
-      margin-right: auto
+      margin: 0 auto
     &_reverse
       padding-top: 60px
       @include sm
@@ -132,9 +128,7 @@
     @include sm
       margin-left: -70px
     @include xxs
-      margin-left: 0
-      margin-top: 0
-      margin-bottom: -23px
+      margin: 0 0 -23px 0
       font-size: 44px
     @include mini
       margin-bottom: -16px

@@ -98,7 +98,7 @@ function anim() {
     });
 
     // Promo section animation
-    const tlTitles = gsap.timeline({
+    const tlPromoTitle = gsap.timeline({
       scrollTrigger: {
         trigger: ".promo__info",
         start: "top 80%",
@@ -107,7 +107,7 @@ function anim() {
       },
     });
 
-    tlTitles
+    tlPromoTitle
       .to(".promo__title", {
         opacity: 0.1,
       })
@@ -152,10 +152,27 @@ function anim() {
         "<"
       );
 
-    // Features section animation
-    gsap.set(".features__title", {
-      opacity: 1,
+    // Features, country and tradition titles animation
+    const opacityTitles = document.querySelectorAll(".opacity-title");
+
+    opacityTitles.forEach((item) => {
+      gsap.set(item, {
+        opacity: 1,
+      });
+
+      gsap.to(item, {
+        opacity: 0.1,
+        scrollTrigger: {
+          trigger: item,
+          start: "top 85%", //
+          end: "bottom 10%",
+          scrub: true,
+          markers: true,
+        },
+      });
     });
+
+    // Features section animation
 
     tlFeatures = gsap.timeline({
       scrollTrigger: {
@@ -166,23 +183,20 @@ function anim() {
       },
     });
 
-    tlFeatures
-      .to(".features__title", {
+    tlFeatures.from(
+      ".features__item",
+      {
         opacity: 0.1,
-      })
-      .from(
-        ".features__item",
-        {
-          opacity: 0.1,
-          yPercent: "random([20, 30, 40])",
-          stagger: {
-            from: "center",
-            each: 0.1,
-          },
+        yPercent: "random([20, 30, 40])",
+        stagger: {
+          from: "center",
+          each: 0.1,
         },
-        "<"
-      );
+      },
+      "<"
+    );
 
+    // Tradition section animation
     gsap.set(".tradition", {
       background: "#100F0D",
     });
@@ -257,17 +271,13 @@ function anim() {
       },
     });
 
-    tlCountry
-      .to(".country__title", {
+    tlCountry.from(
+      ".country__right",
+      {
         opacity: 0.1,
-      })
-      .from(
-        ".country__right",
-        {
-          opacity: 0.1,
-        },
-        "<"
-      );
+      },
+      "<"
+    );
 
     gsap.set(".story", {
       background: "#100F0D",
@@ -373,7 +383,7 @@ function anim() {
         "<"
       )
       .from(
-        ".promo__title", //a ver
+        ".promo__title",
         {
           duration: 1,
           yPercent: 50,
@@ -396,8 +406,8 @@ function anim() {
       },
     });
 
-    // promo section animation
-    const tlTitles = gsap.timeline({
+    // Promo section animation
+    const tlPromoTitle = gsap.timeline({
       scrollTrigger: {
         trigger: ".promo__info",
         start: "top 80%",
@@ -406,7 +416,7 @@ function anim() {
       },
     });
 
-    tlTitles
+    tlPromoTitle
       .to(".promo__title", {
         opacity: 0.1,
       })
@@ -418,8 +428,16 @@ function anim() {
         "<"
       );
 
-    // Features section animation
+    // Features and country titles animation
     gsap.set(".features__title", {
+      opacity: 1,
+    });
+
+    gsap.set(".country__title", {
+      opacity: 1,
+    });
+
+    gsap.set(".tradition__title", {
       opacity: 1,
     });
 
@@ -437,6 +455,7 @@ function anim() {
       });
     });
 
+    // Features section animation
     const items = document.querySelectorAll(".features__item");
 
     items.forEach((item) => {
@@ -451,6 +470,7 @@ function anim() {
       });
     });
 
+    // Tradition section animation
     gsap.set(".tradition", {
       background: "#100F0D",
     });
