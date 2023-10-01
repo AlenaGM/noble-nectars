@@ -1,28 +1,28 @@
 .header
+  display: flex
+  align-items: center
+  justify-content: center
+  height: 100vh
   padding: 48px 0
-  height: 100vh //a ver
-  display: flex //a ver
-  align-items: center //a ver
-  justify-content: center //a ver
   &__wrapper
     display: flex
     justify-content: center
   &__logo
+    display: flex
+    align-items: center
     height: 56px
-    display: flex //a ver
-    align-items: center //a ver
-    overflow: hidden //a ver
-    transform: scale(2) //a ver
+    transform: scale(2)
+    overflow: hidden
     @include sm
-      transform: none //a ver
+      transform: none
     @include xs
-      height: auto //a ver
+      height: auto
     @include xxs
-      height: 30px //a ver
+      height: 30px
     img
       max-height: 100%
       object-fit: contain
-      visibility: hidden //a ver
-      &:last-child //a ver
-        margin-left: 14px //a ver
+      visibility: hidden
+      &:last-child
+        margin-left: 14px
 

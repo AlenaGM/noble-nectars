@@ -28,6 +28,7 @@ window.addEventListener("DOMContentLoaded", () => {
 function anim() {
   const mediaAnimation = gsap.matchMedia();
 
+  // Header, preview image & promo title animation
   mediaAnimation.add("(min-width: 1025px)", () => {
     gsap.set(".header", {
       height: "100vh",
@@ -67,8 +68,8 @@ function anim() {
       .from(
         ".preview",
         {
-          autoAlpha: 0,
           duration: 1.3,
+          autoAlpha: 0,
         },
         "<"
       )
@@ -76,18 +77,10 @@ function anim() {
         ".promo__title",
         {
           duration: 1,
-          yPercent: 50,
           autoAlpha: 0,
+          yPercent: 50,
         },
         "-=0.7"
-      )
-      .from(
-        ".promo__img",
-        {
-          yPercent: 50,
-          autoAlpha: 0,
-        },
-        "<"
       );
 
     gsap.set(".promo__title", {
@@ -104,6 +97,7 @@ function anim() {
       },
     });
 
+    // Promo section animation
     const tlTitles = gsap.timeline({
       scrollTrigger: {
         trigger: ".promo__info",
@@ -119,6 +113,13 @@ function anim() {
       })
       .from(
         ".promo__info",
+        {
+          opacity: 0.1,
+        },
+        "<"
+      )
+      .from(
+        ".promo__img",
         {
           opacity: 0.1,
         },
@@ -151,6 +152,7 @@ function anim() {
         "<"
       );
 
+    // Features section animation
     gsap.set(".features__title", {
       opacity: 1,
     });
@@ -334,6 +336,7 @@ function anim() {
   });
 
   mediaAnimation.add("(max-width: 1024px)", () => {
+    //Header, preview image & promo title animation
     gsap.set(".header", {
       height: "100vh",
     });
@@ -361,14 +364,6 @@ function anim() {
         height: "auto",
         delay: 0.3,
       })
-      .to(
-        ".header__logo",
-        {
-          duration: 0.8,
-          scale: 1,
-        },
-        "<"
-      )
       .from(
         ".preview",
         {
@@ -378,7 +373,7 @@ function anim() {
         "<"
       )
       .from(
-        ".promo__title",
+        ".promo__title", //a ver
         {
           duration: 1,
           yPercent: 50,
@@ -401,6 +396,7 @@ function anim() {
       },
     });
 
+    // promo section animation
     const tlTitles = gsap.timeline({
       scrollTrigger: {
         trigger: ".promo__info",
@@ -422,6 +418,7 @@ function anim() {
         "<"
       );
 
+    // Features section animation
     gsap.set(".features__title", {
       opacity: 1,
     });
