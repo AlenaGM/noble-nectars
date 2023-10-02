@@ -43,32 +43,13 @@
     display: flex
     flex-direction: column
     align-items: flex-start
-  &__address
-    margin-bottom: 10px
-  &__city
+  &__address, &__city
     margin-bottom: 10px
   &__time
     margin-bottom: 60px
     @include xs
       margin-bottom: 40px
-  &__tel
-    position: relative
-    margin-bottom: 10px
-    &::after
-      content: ''
-      background: $main-color
-      position: absolute
-      bottom: -2px
-      left: 50%
-      height: 1px
-      width: 0
-      transform: translateX(-50%)
-      transition: width 0.3s ease
-    &:hover
-      &::after
-        width: 100%
-        transition: width 0.3s ease
-  &__email
+  &__tel, &__email
     position: relative
     margin-bottom: 10px
     &::after
