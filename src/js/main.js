@@ -2,26 +2,26 @@
 window.addEventListener("DOMContentLoaded", () => {
   anim();
 
-  const swiper = new Swiper(".swiper", {
-    loop: true,
-    autoplay: {
-      delay: 2000,
-      disableOnInteraction: false,
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1.1,
-        spaceBetween: 20,
-        centeredSlides: false,
-      },
-      450: {
-        slidesPerView: 1.4,
-        spaceBetween: 30,
-        centeredSlides: true,
-        initialSlide: 1,
-      },
-    },
-  });
+  //const swiper = new Swiper(".swiper", {
+  //  loop: true,
+  //  autoplay: {
+  //    delay: 2000,
+  //    disableOnInteraction: false,
+  //  },
+  //  breakpoints: {
+  //    320: {
+  //      slidesPerView: 1.1,
+  //      spaceBetween: 20,
+  //      centeredSlides: false,
+  //    },
+  //    450: {
+  //      slidesPerView: 1.4,
+  //      spaceBetween: 30,
+  //      centeredSlides: true,
+  //      initialSlide: 1,
+  //    },
+  //  },
+  //});
 });
 
 function anim() {
@@ -171,20 +171,24 @@ function anim() {
     });
 
     // Features section animation
-    gsap.from(".features__item", {
-      opacity: 0.1,
-      yPercent: "random([20, 30, 40])",
-      stagger: {
-        from: "center",
-        each: 0.1,
+    gsap.from(
+      ".features__item",
+      {
+        opacity: 0.1,
+        yPercent: "random([20, 30, 40])",
+        stagger: {
+          from: "center",
+          each: 0.1,
+        },
+        scrollTrigger: {
+          trigger: ".features__wrapper",
+          start: "top 85%",
+          end: "top 40%",
+          scrub: true,
+        },
       },
-      scrollTrigger: {
-        trigger: ".features__wrapper",
-        start: "top 85%",
-        end: "top 40%",
-        scrub: true,
-      },
-    });
+      "<"
+    );
 
     // Tradition section animation
     gsap.set(".tradition", {
@@ -274,7 +278,7 @@ function anim() {
       opacity: 0.1,
     });
 
-    //Story section animation - a faire
+    //Story section animation
     gsap.set(".story", {
       background: "#100F0D",
     });
@@ -319,7 +323,51 @@ function anim() {
         "<"
       );
 
-    // Footer animation - a faire
+    //Story section - horizontal scroll
+    const sections = gsap.utils.toArray(".slider__slide");
+
+    gsap.set(".slider__text", {
+      opacity: 0.1,
+    });
+
+    const horisontal = gsap.to(".slider__wrapper", {
+      xPercent: -100 * (sections.length - 1),
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".slider__wrapper",
+        start: "top top",
+        end: `+=${sections.length * 1000}`,
+        pin: true,
+        scrub: true,
+      },
+    });
+
+    document.querySelectorAll(".slider__text").forEach((item, index) => {
+      if (index != 0) {
+        gsap.to(item, {
+          opacity: 1,
+          scrollTrigger: {
+            trigger: item,
+            start: "left 60%",
+            end: "+=500",
+            scrub: 1,
+            containerAnimation: horisontal,
+          },
+        });
+      } else {
+        gsap.to(item, {
+          opacity: 1,
+          duration: 0.5,
+          scrollTrigger: {
+            trigger: ".slider__wrapper",
+            start: "top top",
+            toggleActions: "play reverse play reverse",
+          },
+        });
+      }
+    });
+
+    // Footer animation
     const tlFooter = gsap.timeline({
       scrollTrigger: {
         trigger: ".footer",
@@ -334,6 +382,7 @@ function anim() {
       .from(".footer__logo", {
         autoAlpha: 0,
         scale: 0.6,
+        duration: 1,
         ease: "bounce.out",
       });
   });
