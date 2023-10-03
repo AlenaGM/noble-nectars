@@ -124,6 +124,7 @@ function anim() {
       .from(
         ".promo__img",
         {
+          autoAlpha: 0,
           opacity: 0.1,
         },
         "<"
