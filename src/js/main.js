@@ -97,6 +97,10 @@ function anim() {
       opacity: 1,
     });
 
+    gsap.set(".promo__img", {
+      opacity: 1,
+    });
+
     const tlPromoTitle = gsap.timeline({
       scrollTrigger: {
         trigger: ".promo__info",
@@ -206,7 +210,6 @@ function anim() {
         end: "bottom 50%",
         duration: 0.7,
         toggleActions: "play reverse play reverse",
-        fastScrollEnd: true, //check effect
       },
     });
 
@@ -399,7 +402,7 @@ function anim() {
   });
 
   mediaAnimation.add("(max-width: 1024px)", () => {
-    //Header, preview image & promo title animation
+    //Header, preview-image & promo title animation
     gsap.set(".header", {
       height: "100vh",
     });
@@ -449,7 +452,7 @@ function anim() {
       yPercent: -10,
       scrollTrigger: {
         trigger: ".preview",
-        start: "top 150px",
+        start: "top 126px",
         end: "bottom top",
         scrub: 1,
       },
@@ -493,7 +496,7 @@ function anim() {
         opacity: 0.1,
         scrollTrigger: {
           trigger: item,
-          start: "top 40%%",
+          start: "bottom 40%",
           end: "bottom 10%",
           scrub: true,
         },
@@ -515,7 +518,7 @@ function anim() {
       });
     });
 
-    // Tradition section animation
+    // Tradition section - background-color change
     gsap.set(".tradition", {
       background: "#100F0D",
     });
@@ -606,7 +609,7 @@ function anim() {
       },
     });
 
-    //Story section animation - a faire
+    //Story section - background-color change
     gsap.set(".story", {
       background: "#100F0D",
     });
@@ -650,8 +653,9 @@ function anim() {
         },
         "<"
       );
+    // Story section animation -> slider
 
-    // Footer animation - a faire
+    // Footer animation
     const tlFooter = gsap.timeline({
       scrollTrigger: {
         trigger: ".footer",
@@ -666,6 +670,7 @@ function anim() {
       .from(".footer__logo", {
         autoAlpha: 0,
         scale: 0.6,
+        duration: 1.75,
         ease: "bounce.out",
       });
   });
