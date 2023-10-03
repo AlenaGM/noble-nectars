@@ -28,7 +28,7 @@ function anim() {
   const mediaAnimation = gsap.matchMedia();
 
   mediaAnimation.add("(min-width: 1025px)", () => {
-    // Header, preview image & promo title animation
+    // Header, preview-image & promo title animation
     gsap.set(".header", {
       height: "100vh",
     });
@@ -163,7 +163,7 @@ function anim() {
         opacity: 0.1,
         scrollTrigger: {
           trigger: item,
-          start: "top 15%",
+          start: "bottom 40%",
           end: "bottom 10%",
           scrub: true,
         },
@@ -190,7 +190,7 @@ function anim() {
       "<"
     );
 
-    // Tradition section animation
+    // Tradition section - background-color change
     gsap.set(".tradition", {
       background: "#100F0D",
     });
@@ -206,6 +206,7 @@ function anim() {
         end: "bottom 50%",
         duration: 0.7,
         toggleActions: "play reverse play reverse",
+        fastScrollEnd: true, //check effect
       },
     });
 
@@ -258,6 +259,7 @@ function anim() {
 
       gsap.to(img, {
         yPercent: -15,
+        autoAlpha: 1,
         scrollTrigger: {
           trigger: block,
           start: "top 80%",
@@ -278,7 +280,7 @@ function anim() {
       opacity: 0.1,
     });
 
-    //Story section animation
+    //Story section - background-color change
     gsap.set(".story", {
       background: "#100F0D",
     });
@@ -325,24 +327,33 @@ function anim() {
 
     //Story section - horizontal scroll
     const sections = gsap.utils.toArray(".slider__slide");
+    const sectionsContainer = document.querySelector(".story__slider");
 
-    gsap.set(".slider__text", {
-      opacity: 0.1,
-    });
-
-    const horisontal = gsap.to(".slider__wrapper", {
+    const horisontal = gsap.to(sections, {
       xPercent: -100 * (sections.length - 1),
       ease: "none",
       scrollTrigger: {
         trigger: ".slider__wrapper",
-        start: "top top",
-        end: `+=${sections.length * 1000}`,
         pin: true,
-        scrub: true,
+        start: "top top",
+        scrub: 1,
+        snap: {
+          snapTo: 1 / (sections.length - 1),
+          inertia: false,
+          duration: { min: 0.2, max: 1 },
+          delay: 0.2,
+          ease: "power1.inOut",
+        },
+        end: () => "+=" + (sectionsContainer.offsetWidth - innerWidth),
       },
     });
 
+    //Story section - horizontal scroll: emerging text
     document.querySelectorAll(".slider__text").forEach((item, index) => {
+      gsap.set(item, {
+        opacity: 0.1,
+      });
+
       if (index != 0) {
         gsap.to(item, {
           opacity: 1,
@@ -361,7 +372,7 @@ function anim() {
           scrollTrigger: {
             trigger: ".slider__wrapper",
             start: "top top",
-            toggleActions: "play reverse play reverse",
+            once: true,
           },
         });
       }
@@ -382,7 +393,7 @@ function anim() {
       .from(".footer__logo", {
         autoAlpha: 0,
         scale: 0.6,
-        duration: 1,
+        duration: 1.75,
         ease: "bounce.out",
       });
   });

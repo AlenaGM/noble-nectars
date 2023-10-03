@@ -134,12 +134,14 @@
       margin-bottom: -16px
       font-size: 32px
     &_bottom
-      margin-top: 0
       margin-bottom: -37px
+      @include sm
+        &::first-line
+          line-height: 120%
       @include xxs
-        margin-bottom: -23px
+        margin-bottom: -28px
       @include mini
-        margin-bottom: -16px
+        margin-bottom: -19px
 
 .tradition
   background: $main-color
