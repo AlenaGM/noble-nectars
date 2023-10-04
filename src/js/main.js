@@ -654,7 +654,31 @@ function anim() {
         },
         "<"
       );
+
     // Story section animation -> slider
+
+    //Story section - horizontal scroll
+    const sections = gsap.utils.toArray(".slider__slide");
+    const sectionsContainer = document.querySelector(".story__slider");
+
+    const horisontal = gsap.to(sections, {
+      xPercent: -100 * (sections.length - 1),
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".slider__wrapper",
+        pin: true,
+        start: "center center",
+        scrub: 1,
+        snap: {
+          snapTo: 1 / (sections.length - 1),
+          inertia: false,
+          duration: { min: 0.2, max: 1 },
+          delay: 0.2,
+          ease: "power1.inOut",
+        },
+        end: () => "+=" + (sectionsContainer.offsetWidth - innerWidth),
+      },
+    });
 
     // Footer animation
     const tlFooter = gsap.timeline({
