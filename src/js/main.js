@@ -341,6 +341,7 @@ function anim() {
         pin: true,
         start: "top top",
         scrub: 1,
+        anticipatePin: 1,
         snap: {
           snapTo: 1 / (sections.length - 1),
           inertia: false,
@@ -621,9 +622,10 @@ function anim() {
 
     const tlStory = gsap.timeline({
       scrollTrigger: {
-        trigger: ".story",
-        start: "top 50%",
-        end: "bottom 50%",
+        delay: 5,
+        trigger: ".story__title",
+        start: "top 90%",
+        end: "bottom 20%",
         duration: 0.7,
         toggleActions: "play reverse play reverse",
       },
@@ -655,19 +657,18 @@ function anim() {
         "<"
       );
 
-    // Story section animation -> slider
-
     //Story section - horizontal scroll
     const sections = gsap.utils.toArray(".slider__slide");
     const sectionsContainer = document.querySelector(".story__slider");
 
+    // eslint-disable-next-line no-unused-vars
     const horisontal = gsap.to(sections, {
       xPercent: -100 * (sections.length - 1),
       ease: "none",
       scrollTrigger: {
         trigger: ".slider__wrapper",
         pin: true,
-        start: "center center",
+        start: "bottom 95%",
         scrub: 1,
         snap: {
           snapTo: 1 / (sections.length - 1),
@@ -678,6 +679,36 @@ function anim() {
         },
         end: () => "+=" + (sectionsContainer.offsetWidth - innerWidth),
       },
+    });
+
+    //Story section - horizontal scroll: emerging text
+    document.querySelectorAll(".slider__text").forEach((item, index) => {
+      gsap.set(item, {
+        opacity: 0.1,
+      });
+
+      if (index != 0) {
+        gsap.to(item, {
+          opacity: 1,
+          scrollTrigger: {
+            trigger: item,
+            start: "left 60%",
+            end: "+=500",
+            scrub: 1,
+            containerAnimation: horisontal,
+          },
+        });
+      } else {
+        gsap.to(item, {
+          opacity: 1,
+          duration: 0.5,
+          scrollTrigger: {
+            trigger: ".story__title",
+            start: "bottom top",
+            once: true,
+          },
+        });
+      }
     });
 
     // Footer animation
