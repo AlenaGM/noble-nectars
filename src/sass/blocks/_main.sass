@@ -288,39 +288,27 @@
     padding-bottom: 140px
   @include mini
     paddin-top: 0
-    padding-bottom: 0
 
-//.swiper-slide
-//  @include sm
-//  height: auto
-//  .slider__text
-//    @include sm
-//    display: none
-//  img
-//    width: 100%
-//    height: 100%
-//    object-fit: cover
+.swiper
+  display: none
+  @include sm
+    display: flex
+  &-slide
+    height: auto
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
 
-//.slider
-//  &__slide
-//    height: auto
-//  &__text
-//    display: none
-//  &__img
-//    img
-//      width: 100%
-//      height: 100%
-//      object-fit: cover
 .slider
   overflow: hidden
   width: 100vw
+  @include sm
+    display: none
   &__wrapper
     display: flex
     height: 100vh
     width: 100vw
-    @include sm
-      height: auto
-      //max-width: 540px
   &__slide
     position: relative
     flex: 0 0 100%
@@ -334,13 +322,6 @@
     font-family: $arina
     font-size: 70px
     text-align: center
-    @include xs
-      transform: translate(-50%, -600px)
-      z-index: 2
-      font-size: 50px
-    @include mini
-      transform: translate(-50%,-420px)
-      font-size: 32px
   &__img
     width: 100%
     height: 100%
@@ -348,12 +329,6 @@
       width: 100%
       height: 100%
       object-fit: cover
-      @include xs
-        filter: brightness(0.7)
-
-#text-1
-  @include xs
-    display: none
 
 .parallax
   overflow: hidden

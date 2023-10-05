@@ -2,26 +2,27 @@
 window.addEventListener("DOMContentLoaded", () => {
   anim();
 
-  //const swiper = new Swiper(".swiper", {
-  //  loop: true,
-  //  autoplay: {
-  //    delay: 2000,
-  //    disableOnInteraction: false,
-  //  },
-  //  breakpoints: {
-  //    320: {
-  //      slidesPerView: 1.1,
-  //      spaceBetween: 20,
-  //      centeredSlides: false,
-  //    },
-  //    450: {
-  //      slidesPerView: 1.4,
-  //      spaceBetween: 30,
-  //      centeredSlides: true,
-  //      initialSlide: 1,
-  //    },
-  //  },
-  //});
+  // eslint-disable-next-line no-unused-vars
+  const swiper = new Swiper(".swiper", {
+    loop: true,
+    autoplay: {
+      delay: 2000,
+      disableOnInteraction: false,
+    },
+    breakpoints: {
+      320: {
+        slidesPerView: 1.1,
+        spaceBetween: 20,
+        centeredSlides: false,
+      },
+      450: {
+        slidesPerView: 1.4,
+        spaceBetween: 30,
+        centeredSlides: true,
+        initialSlide: 1,
+      },
+    },
+  });
 });
 
 function anim() {
@@ -168,7 +169,7 @@ function anim() {
         opacity: 0.1,
         scrollTrigger: {
           trigger: item,
-          start: "bottom 40%",
+          start: "bottom 50%",
           end: "bottom 10%",
           scrub: true,
         },
@@ -284,7 +285,7 @@ function anim() {
       opacity: 0.1,
     });
 
-    //Story section - background-color change
+    //Story section - background-color change  for smoother transition to footer
     gsap.set(".story", {
       background: "#100F0D",
     });
@@ -353,7 +354,7 @@ function anim() {
       },
     });
 
-    //Story section - horizontal scroll: emerging text
+    //Story section - emerging text
     document.querySelectorAll(".slider__text").forEach((item, index) => {
       gsap.set(item, {
         opacity: 0.1,
@@ -498,7 +499,7 @@ function anim() {
         opacity: 0.1,
         scrollTrigger: {
           trigger: item,
-          start: "bottom 40%",
+          start: "bottom 50%",
           end: "bottom 10%",
           scrub: true,
         },
@@ -565,16 +566,6 @@ function anim() {
         "<"
       );
 
-    gsap.from(".tradition__info", {
-      opacity: 0.1,
-      scrollTrigger: {
-        trigger: ".tradition__info",
-        start: "top 80%",
-        end: "top 40%",
-        scrub: true,
-      },
-    });
-
     // Parallax images
     gsap.set(".parallax img", {
       scale: 1.3,
@@ -597,21 +588,7 @@ function anim() {
       });
     });
 
-    //Country section animation
-    gsap.from(".country__right", {
-      scrollTrigger: {
-        trigger: ".country__right p:first-of-type",
-        start: "top 80%",
-        end: "top 40%",
-        scrub: true,
-      },
-      opacity: 0.1,
-      onComplete: () => {
-        ScrollTrigger.refresh();
-      },
-    });
-
-    //Story section - background-color change
+    //Story section - background-color change for smoother transition to footer
     gsap.set(".story", {
       background: "#100F0D",
     });
@@ -620,12 +597,16 @@ function anim() {
       color: "#EDEAE2",
     });
 
+    gsap.set(".story__title", {
+      opacity: 1,
+    });
+
     const tlStory = gsap.timeline({
       scrollTrigger: {
         delay: 5,
-        trigger: ".story__title",
-        start: "top 90%",
-        end: "bottom 20%",
+        trigger: ".story",
+        start: "top 50%",
+        end: "bottom 50%",
         duration: 0.7,
         toggleActions: "play reverse play reverse",
       },
@@ -656,60 +637,6 @@ function anim() {
         },
         "<"
       );
-
-    //Story section - horizontal scroll
-    const sections = gsap.utils.toArray(".slider__slide");
-    const sectionsContainer = document.querySelector(".story__slider");
-
-    // eslint-disable-next-line no-unused-vars
-    const horisontal = gsap.to(sections, {
-      xPercent: -100 * (sections.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".slider__wrapper",
-        pin: true,
-        start: "bottom 95%",
-        scrub: 1,
-        snap: {
-          snapTo: 1 / (sections.length - 1),
-          inertia: false,
-          duration: { min: 0.2, max: 1 },
-          delay: 0.2,
-          ease: "power1.inOut",
-        },
-        end: () => "+=" + (sectionsContainer.offsetWidth - innerWidth),
-      },
-    });
-
-    //Story section - horizontal scroll: emerging text
-    document.querySelectorAll(".slider__text").forEach((item, index) => {
-      gsap.set(item, {
-        opacity: 0.1,
-      });
-
-      if (index != 0) {
-        gsap.to(item, {
-          opacity: 1,
-          scrollTrigger: {
-            trigger: item,
-            start: "left 60%",
-            end: "+=500",
-            scrub: 1,
-            containerAnimation: horisontal,
-          },
-        });
-      } else {
-        gsap.to(item, {
-          opacity: 1,
-          duration: 0.5,
-          scrollTrigger: {
-            trigger: ".story__title",
-            start: "bottom top",
-            once: true,
-          },
-        });
-      }
-    });
 
     // Footer animation
     const tlFooter = gsap.timeline({
