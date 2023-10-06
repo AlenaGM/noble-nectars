@@ -488,6 +488,7 @@ function anim() {
       );
 
     // Titles fade-away animation
+    document.querySelector(".story__title").classList.remove("opacity-title");
     const opacityTitles = document.querySelectorAll(".opacity-title");
 
     opacityTitles.forEach((item) => {
@@ -589,16 +590,18 @@ function anim() {
     });
 
     //Story section - background-color change for smoother transition to footer
+    ScrollTrigger.refresh();
+
     gsap.set(".story", {
       background: "#100F0D",
     });
 
     gsap.set(".story__title", {
-      color: "#EDEAE2",
+      opacity: 1,
     });
 
     gsap.set(".story__title", {
-      opacity: 1,
+      color: "#EDEAE2",
     });
 
     const tlStory = gsap.timeline({
@@ -637,6 +640,19 @@ function anim() {
         },
         "<"
       );
+
+    //Story section - title fade-away
+
+    gsap.to(".story__title", {
+      opacity: 0.1,
+      scrollTrigger: {
+        trigger: ".story__title",
+        start: "bottom 50%",
+        end: "bottom 10%",
+        scrub: true,
+        markers: true,
+      },
+    });
 
     // Footer animation
     const tlFooter = gsap.timeline({
