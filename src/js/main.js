@@ -662,23 +662,16 @@ function anim() {
       },
     });
 
-    // Footer animation  - emerging text and logo
-    const tlFooter = gsap.timeline({
+    // Footer animation - emerging logo
+    gsap.from(".footer__logo", {
       scrollTrigger: {
         trigger: ".footer",
         start: "90% bottom",
       },
+      autoAlpha: 0,
+      scale: 0.6,
+      duration: 1.75,
+      ease: "bounce.out",
     });
-
-    tlFooter
-      .from(".footer__bottom", {
-        autoAlpha: 0,
-      })
-      .from(".footer__logo", {
-        autoAlpha: 0,
-        scale: 0.6,
-        duration: 1.75,
-        ease: "bounce.out",
-      });
   });
 }
