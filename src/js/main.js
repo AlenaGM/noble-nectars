@@ -26,10 +26,15 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function anim() {
+  gsap.registerPlugin(ScrollTrigger);
+
   const mediaAnimation = gsap.matchMedia();
 
   mediaAnimation.add("(min-width: 1025px)", () => {
     // Header, preview-image & promo title animation
+    //  1- Full-screen header-logo shrinks to its regular size
+    //  2- Parallax effect on preview image
+    //  3- Promo title moves up from outside of the screen
     gsap.set(".header", {
       height: "100vh",
     });
@@ -93,7 +98,7 @@ function anim() {
       },
     });
 
-    // Promo section animation
+    // Promo section animation - title, text and image change opacity from 0.1 to 1
     gsap.set(".promo__title", {
       opacity: 1,
     });
@@ -131,6 +136,7 @@ function anim() {
         "<"
       );
 
+    // Promo section animation -  text remains in place, images move from bottom to top
     gsap.set(".promo__left-inner", {
       yPercent: 120,
     });
@@ -176,7 +182,7 @@ function anim() {
       });
     });
 
-    // Features section animation
+    // Features section animation - cards appear from outside bottom of the screen at different speeds
     gsap.from(
       ".features__item",
       {
@@ -196,7 +202,7 @@ function anim() {
       "<"
     );
 
-    // Tradition section - background-color change
+    // Tradition section - background-color change, emerging text
     gsap.set(".tradition", {
       background: "#100F0D",
     });
@@ -251,7 +257,7 @@ function anim() {
       },
     });
 
-    // Parallax images
+    // Parallax effect on images
     gsap.set(".parallax img", {
       scale: 1.3,
       yPercent: 15,
@@ -274,7 +280,7 @@ function anim() {
       });
     });
 
-    //Country section animation
+    // Country section animation - text gradually appears
     gsap.from(".country__right", {
       scrollTrigger: {
         trigger: ".country__right p:first-of-type",
@@ -285,7 +291,7 @@ function anim() {
       opacity: 0.1,
     });
 
-    //Story section - background-color change  for smoother transition to footer
+    // Story section - background-color change  for smoother transition to footer
     gsap.set(".story", {
       background: "#100F0D",
     });
@@ -330,7 +336,7 @@ function anim() {
         "<"
       );
 
-    //Story section - horizontal scroll
+    // Story section - horizontal scroll
     const sections = gsap.utils.toArray(".slider__slide");
     const sectionsContainer = document.querySelector(".story__slider");
 
@@ -354,7 +360,7 @@ function anim() {
       },
     });
 
-    //Story section - emerging text
+    // Story section - emerging text
     document.querySelectorAll(".slider__text").forEach((item, index) => {
       gsap.set(item, {
         opacity: 0.1,
@@ -384,7 +390,7 @@ function anim() {
       }
     });
 
-    // Footer animation
+    // Footer animation - emerging text and logo
     const tlFooter = gsap.timeline({
       scrollTrigger: {
         trigger: ".footer",
@@ -405,7 +411,10 @@ function anim() {
   });
 
   mediaAnimation.add("(max-width: 1024px)", () => {
-    //Header, preview-image & promo title animation
+    // Header, preview-image & promo title animation
+    //  1- Full-screen header-logo shrinks to its regular size
+    //  2- Parallax effect on preview image
+    //  3- Promo title moves up from outside of the screen
     gsap.set(".header", {
       height: "100vh",
     });
@@ -461,7 +470,7 @@ function anim() {
       },
     });
 
-    // Promo section animation
+    // Promo section animation - title, text and image change opacity from 0.1 to 1
     gsap.set(".promo__title", {
       opacity: 1,
     });
@@ -507,7 +516,7 @@ function anim() {
       });
     });
 
-    // Features section animation
+    // Features section animation - emerging cards
     const items = document.querySelectorAll(".features__item");
 
     items.forEach((item) => {
@@ -567,7 +576,7 @@ function anim() {
         "<"
       );
 
-    // Parallax images
+    // Parallax effect on images
     gsap.set(".parallax img", {
       scale: 1.3,
       yPercent: 15,
@@ -589,7 +598,7 @@ function anim() {
       });
     });
 
-    //Story section - background-color change for smoother transition to footer
+    // Story section - background-color change for smoother transition to footer
     ScrollTrigger.refresh();
 
     gsap.set(".story", {
@@ -641,7 +650,7 @@ function anim() {
         "<"
       );
 
-    //Story section - title fade-away
+    // Story section - title fade-away
 
     gsap.to(".story__title", {
       opacity: 0.1,
@@ -650,11 +659,10 @@ function anim() {
         start: "bottom 50%",
         end: "bottom 10%",
         scrub: true,
-        markers: true,
       },
     });
 
-    // Footer animation
+    // Footer animation  - emerging text and logo
     const tlFooter = gsap.timeline({
       scrollTrigger: {
         trigger: ".footer",
