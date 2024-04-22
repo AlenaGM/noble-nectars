@@ -12,14 +12,15 @@ window.addEventListener("DOMContentLoaded", () => {
     breakpoints: {
       320: {
         slidesPerView: 1.1,
-        spaceBetween: 20,
         centeredSlides: false,
+        initialSlide: 1,
+        spaceBetween: 20,
       },
-      450: {
-        slidesPerView: 1.4,
-        spaceBetween: 30,
+      767: {
+        slidesPerView: 1.3,
         centeredSlides: true,
         initialSlide: 1,
+        spaceBetween: 30,
       },
     },
   });
@@ -497,7 +498,6 @@ function anim() {
       );
 
     // Titles fade-away animation
-    document.querySelector(".story__title").classList.remove("opacity-title");
     const opacityTitles = document.querySelectorAll(".opacity-title");
 
     opacityTitles.forEach((item) => {
