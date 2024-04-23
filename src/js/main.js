@@ -650,18 +650,6 @@ function anim() {
         "<"
       );
 
-    // Story section - title fade-away
-
-    gsap.to(".story__title", {
-      opacity: 0.1,
-      scrollTrigger: {
-        trigger: ".story__title",
-        start: "bottom 50%",
-        end: "bottom 10%",
-        scrub: true,
-      },
-    });
-
     // Footer animation - emerging logo
     gsap.from(".footer__logo", {
       scrollTrigger: {
