@@ -86,7 +86,7 @@ function anim() {
           autoAlpha: 0,
           yPercent: 50,
         },
-        "-=0.7"
+        "-=0.5"
       );
 
     gsap.to(".preview__bg", {
